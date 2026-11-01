@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modals Quest – Modals and their substitute forms</title>
+<style>
+:root{--g:#3f8f2f;--gd:#245c1b;--o:#ff8f1f;--b:#2a7de1;--r:#e63946;--bg:#e9f5ef;--t:#1c2a1a}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;background:var(--bg);color:var(--t);line-height:1.45}
+header{background:linear-gradient(120deg,#245c1b,#3f8f2f 60%,#7cc242);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+h1{margin:0;font-size:1.5rem}h1 small{display:block;font-size:.8rem;font-weight:400;opacity:.9}
+.sc{background:#fff;color:var(--gd);border-radius:30px;padding:6px 16px;font-size:1.2rem;font-weight:700}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding:10px 14px 0;max-width:960px;margin:auto}
+nav button{border:0;border-radius:14px 14px 0 0;padding:10px 14px;font:inherit;font-weight:700;background:#cfe6d8;color:var(--gd);cursor:pointer}
+nav button.on{background:#fff;box-shadow:0 -3px 0 var(--o) inset}
+#sub,#ts{padding-top:6px}#sub button,#ts button{border-radius:20px;padding:7px 13px;background:#fff;border:2px solid #cfe6d8;font-weight:600}
+#sub button.on,#ts button.on{background:var(--o);color:#fff;border-color:var(--o);box-shadow:none}
+main{max-width:960px;margin:auto;padding:8px 14px 40px}
+#card{background:#fff;border-radius:0 18px 18px 18px;padding:18px;box-shadow:0 4px 14px #0001}
+h2{margin:0 0 4px;color:var(--gd)}#td{margin:0 0 14px;color:#4b5d48}
+.b{border:0;border-radius:12px;padding:10px 16px;font:inherit;font-weight:700;color:#fff;background:var(--b);cursor:pointer}
+.b.g{background:var(--g)}.b.o{background:var(--o)}.bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+#msg{margin-top:12px;font-weight:700;color:var(--gd)}
+.q,.row{border:2px solid #dcebe1;border-radius:14px;padding:10px 12px;margin:0 0 10px;transition:.2s}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.hint{font-size:.82rem;color:#5d7059;margin-bottom:4px}.s{font-size:1.08rem}.tip{font-size:.85rem;color:var(--r)}
+.in,select{font:inherit;border:2px solid #b7d4c0;border-radius:10px;padding:5px 9px;max-width:190px}
+.os{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.opt{font:inherit;border:2px solid #b7d4c0;background:#f6fbf8;border-radius:12px;padding:7px 12px;cursor:pointer;text-align:left}
+.opt.sel,.tk.on{background:#ffe3bf;border-color:var(--o)}.opt.l{width:100%}
+.tk{font:inherit;border:2px solid #b7d4c0;background:#f6fbf8;border-radius:10px;padding:5px 9px;cursor:pointer}
+.ans{min-height:46px;border:2px dashed #b7d4c0;border-radius:12px;padding:6px;display:flex;gap:6px;flex-wrap:wrap}
+.gr{color:var(--g)}b.gr{font-weight:800}
+.ok{outline:3px solid #4caf50;background:#eaf8e6!important;animation:pop .5s}
+.bad{outline:3px solid var(--r);background:#fdecee!important}
+@keyframes pop{50%{transform:scale(1.04)}}
+.fx{position:fixed;z-index:99;pointer-events:none;font-size:24px;margin:-12px;transition:transform .9s cubic-bezier(.2,.8,.3,1),opacity .9s}
+.fx.plus{font-weight:800;color:var(--g);font-size:28px}
+.fc{perspective:900px;max-width:480px;margin:auto}
+.flip{display:grid;transform-style:preserve-3d;transition:transform .6s;cursor:pointer;min-height:250px}
+.flip.f{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;border-radius:20px;padding:18px;display:flex;flex-direction:column;justify-content:center;border:3px solid var(--g)}
+.fr{background:linear-gradient(135deg,#d9f1bf,#fff);text-align:center}.fr .big{font-size:3.2rem}.fr .mod{font-size:1.8rem;font-weight:800;color:var(--gd)}
+.bk{background:#fff6df;transform:rotateY(180deg);border-color:var(--o);font-size:.92rem}
+.nv{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.note{background:#fff6df;border-left:6px solid var(--o);padding:8px 12px;border-radius:8px}
+table{border-collapse:collapse;width:100%;margin-bottom:12px;font-size:.9rem}
+th{background:var(--g);color:#fff;text-align:left}th,td{border:1px solid #cfe0d4;padding:6px 8px;vertical-align:top}
+.mem{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(min-width:640px){.mem{grid-template-columns:repeat(4,1fr)}}
+.mc{height:84px;border:3px solid transparent;border-radius:12px;font:inherit;font-size:.82rem;font-weight:700;color:#fff;background:var(--g);cursor:pointer;padding:4px}
+.mc.q{background:var(--b)}.mc .ft{display:none}.mc .qm{font-size:1.6rem}
+.mc.up{background:#fff;color:var(--t);border-color:var(--b)}.mc.up.a{border-color:var(--g)}.mc.up .ft{display:block}.mc.up .qm{display:none}.mc.done{background:#eaf8e6}
+.mk{font-weight:800;letter-spacing:2px;color:var(--b);background:#e6f0ff;border-radius:6px;padding:0 6px}
+.lv{margin:8px 0}.kb{display:flex;flex-wrap:wrap;gap:5px}.kb button{width:34px;height:34px;border:0;border-radius:8px;background:#e6f0ff;font:inherit;font-weight:700;cursor:pointer}
+.kb button:disabled{opacity:.3}
+canvas{max-width:100%;border-radius:10px;box-shadow:0 3px 12px #0003;margin:12px 0}
+:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<header><h1>🎓 Modals Quest<small>Unit 1 · G1 Modals and their substitute forms</small></h1><div class="sc">⭐ <span id="sc">0</span></div></header>
+<nav id="tabs"></nav><nav id="sub"></nav><nav id="ts" aria-label="Zeitform"></nav>
+<main><section id="card"><h2 id="tt"></h2><p id="td"></p><div id="box"></div>
+<div class="bar" id="bar"><button class="b g" id="bc">✅ Prüfen</button><button class="b o" id="bn">🔄 Neue Aufgaben</button></div><div id="msg" aria-live="polite"></div></section></main>
+<script>
+const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)];
+const R=a=>a[Math.floor(Math.random()*a.length)];
+const sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const h=(t,c,i)=>{const e=document.createElement(t);if(c)e.className=c;if(i!=null)e.innerHTML=i;return e};
+let S={score:0,name:''};
+try{Object.assign(S,JSON.parse(localStorage.getItem('modalsQuest')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('modalsQuest',JSON.stringify(S))}catch(e){}$('#sc').textContent=S.score};
+
+/* ---------- Inhalte aus dem Buch (S. 168) ---------- */
+const ICON={allowed:'🪪',able:'💪',have:'📋'};
+const LAB={allowed:'Erlaubnis/Verbot',able:'(Un-)Fähigkeit',have:'(keine) Notwendigkeit'};
+const SUB={allowed:'be allowed to',able:'be able to',have:'have to'};
+const em=s=>s.replace(/\*(.+?)\*/g,'<b class="gr">$1</b>');
+const CARDS=[
+{m:'can',c:'allowed',pr:'am / is / are allowed to',ps:'was / were allowed to',
+ ep:['Everyone *is allowed to* choose their own project.'],es:['The groups *were allowed to* discuss different ideas.']},
+{m:'can’t / mustn’t',c:'allowed',pr:'isn’t / aren’t allowed to',ps:'wasn’t / weren’t allowed to',
+ ep:['I don’t understand why we *aren’t allowed to* choose groups.'],es:['At the workshop, we *weren’t allowed to* go out at night.']},
+{m:'may',c:'allowed',pr:'Am / Is / Are … allowed to?',ps:'Was / Were … allowed to?',
+ ep:['*Am* I *allowed to* use my phone during the workshop sessions?'],es:['*Were* you *allowed to* work with other groups?']},
+{m:'can',c:'able',pr:'am / is / are able to',ps:'was / were able to',
+ ep:['Rishi and Lauren *are able to* go home at night, but they want to stay with the others.'],es:['The workshop participants *were able to* come up with lots of ideas.']},
+{m:'can’t',c:'able',pr:'isn’t / aren’t able to',ps:'wasn’t / weren’t able to',
+ ep:['One group *isn’t able to* stay polite; they argue all the time.'],es:['Ollie’s group *wasn’t able to* choose a group leader.']},
+{m:'must',c:'have',pr:'have to / has to',ps:'had to',
+ ep:['Rishi doesn’t understand why he *has to* be at the workshop.','The groups *have to* present their projects to the other groups.'],
+ es:['At last year’s workshop, Jess *had to* stop a group from arguing.','All the participants *had to* sign their workshop rules.']},
+{m:'needn’t',c:'have',pr:'don’t / doesn’t have to',ps:'didn’t have to',
+ ep:['Jess *doesn’t have to* help the groups because they have lots of ideas.','The groups *don’t have to* work in the same room; there are different places.'],
+ es:['Ollie *didn’t have to* say a lot; everyone liked him right away.','We *didn’t have to* be in bed before 9:30 p.m.; it was okay to stay up longer.']}];
+const SHORT={allowed:'Erlaubnis',able:'Fähigkeit',have:'Notwendigkeit'};
+let TS='x';
+const SPECS=CARDS.flatMap(c=>[{q:`${ICON[c.c]} ${c.m} (${SHORT[c.c]}) · present`,a:c.pr,t:'p'},{q:`${ICON[c.c]} ${c.m} (${SHORT[c.c]}) · past`,a:c.ps,t:'s'}]);
+const specs=()=>SPECS.filter(x=>TS=='x'||x.t==TS);
+
+/* ---------- Generator für unendlich viele Beispiele ---------- */
+const SUBJ=[['I','1'],['you','2'],['he','3'],['she','3'],['we','2'],['they','2'],['Mia','3'],['Tom and Ben','2'],['the students','2'],['my sister','3'],['the teacher','3']];
+const PH={allowed:['use the tablet in class','go out at night','choose a project','eat in the classroom','stay up late','use the phone at school'],
+able:['solve the problem','come up with ideas','swim 100 metres','finish the project','speak in front of the class','find the way'],
+have:['present the project','sign the rules','be at the workshop','clean the room','help the groups','wear a uniform']};
+const MO=(c,n)=>({allowed:n?'can’t / mustn’t':'can',able:n?'can’t':'can',have:n?'needn’t':'must'}[c]);
+function F(c,n,t,p){
+ if(c=='have')return t=='p'?(n?(p=='3'?'doesn’t':'don’t')+' have to':(p=='3'?'has to':'have to')):(n?'didn’t have to':'had to');
+ const w=t=='p'?(p=='1'?'am':p=='3'?'is':'are'):(p=='2'?'were':'was');
+ return(n?(w=='am'?'am not':w+'n’t'):w)+' '+(c=='able'?'able':'allowed')+' to'}
+function mk(c,n,t,s){const p=s[1],f=F(c,n,t,p),ph=R(PH[c]),pre=R(t=='p'?['Today, ','Every day, ','Right now, ']:['Yesterday, ','Last year, ','Last week, ']);
+ return{c,n,t,p,f,ph,pre,subj:s[0],hint:`${ICON[c]} ${LAB[c]} · ${MO(c,n)} → simple ${t=='p'?'present':'past'}`,sent:`${pre}${s[0]} ${f} ${ph}.`}}
+const rnd=()=>mk(R(['allowed','able','have']),Math.random()<.5,TS=='x'?R(['p','s']):TS,R(SUBJ));
+function wrongF(o){const c=[F(o.c,o.n,o.t=='p'?'s':'p',o.p),F(o.c,o.n,o.t,o.p=='3'?'2':'3')].filter(x=>x!=o.f);return R(c)}
+function opts(o){const s=new Set([o.f,wrongF(o)]),all=[];
+ ['allowed','able','have'].forEach(c=>[0,1].forEach(n=>['p','s'].forEach(t=>all.push(F(c,n,t,o.p)))));
+ sh(all).forEach(x=>{if(s.size<4)s.add(x)});return sh([...s])}
+const nz=s=>s.toLowerCase().replace(/['`´]/g,'’').replace(/\s+/g,' ').trim();
+const same=(a,f)=>{a=nz(a);f=nz(f);return a==f||a.replace(/ not /,'n’t ')==f};
+
+/* ---------- Belohnung ---------- */
+function award(el){S.score++;save();const r=el.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+Math.min(r.height,70)/2;
+ const sp=(t,c,dx,dy)=>{const p=h('span','fx '+c,t);p.style.left=x+'px';p.style.top=y+'px';document.body.append(p);
+  setTimeout(()=>{p.style.transform=`translate(${dx}px,${dy}px) rotate(${Math.random()*360}deg)`;p.style.opacity=0},20);setTimeout(()=>p.remove(),1000)};
+ for(let i=0;i<14;i++){const a=Math.random()*6.28,d=60+Math.random()*90;sp(R(['🎉','⭐','✨','🌟','💚','🎈']),'',Math.cos(a)*d,Math.sin(a)*d-40)}
+ sp('+1 ⭐','plus',0,-90)}
+
+/* ---------- Teil 1: Kennenlernen ---------- */
+function cards(box){let i=0;const w=h('div','fc');box.append(w);
+ const draw=()=>{const c=CARDS[i];w.innerHTML=`<div class="flip"><div class="face fr"><div class="big">${ICON[c.c]}</div><div class="mod">${c.m}</div><div>${LAB[c.c]} → ${SUB[c.c]}</div><small>👆 Tippe zum Umdrehen</small></div>
+ <div class="face bk">${TS!='s'?`<div><b>simple present:</b> ${c.pr}<br><i>${c.ep.map(em).join('<br>')}</i></div>`:''}${TS=='x'?'<hr style="width:100%">':''}${TS!='p'?`<div><b>simple past:</b> ${c.ps}<br><i>${c.es.map(em).join('<br>')}</i></div>`:''}</div></div>
+ <div class="nv"><button class="b" id="pv">◀</button><span>${i+1} / ${CARDS.length}</span><button class="b" id="nx">▶</button></div>`;
+  $('.flip',w).onclick=e=>e.currentTarget.classList.toggle('f');
+  $('#pv',w).onclick=()=>{i=(i+CARDS.length-1)%CARDS.length;draw()};$('#nx',w).onclick=()=>{i=(i+1)%CARDS.length;draw()}};
+ draw()}
+function sheet(box){box.append(h('p','note','💡 <b>Merke:</b> can, can’t, may, must, mustn’t und needn’t kannst du nur im simple present benutzen. Für die anderen Zeitformen verwendest du die Ersatzformen.'));
+ ['allowed','able','have'].forEach((c,g)=>box.append(h('div','',`<h3>${g+1}. ${ICON[c]} ${LAB[c]}: ${SUB[c]}</h3><table><tr><th>Modalverb</th>${TS!='s'?'<th>Ersatzform im simple present</th>':''}${TS!='p'?'<th>Ersatzform im simple past</th>':''}</tr>${CARDS.filter(x=>x.c==c).map(x=>`<tr><td>${x.m}</td>${TS!='s'?`<td>${x.ep.map(em).join('<br>')}</td>`:''}${TS!='p'?`<td>${x.es.map(em).join('<br>')}</td>`:''}</tr>`).join('')}</table>`)))}
+function match(box){const sp=sh(specs()).slice(0,6),op=sh(sp.map(s=>s.a));
+ box.items=sp.map(s=>{const r=h('div','row',`<span>${s.q}</span><select><option value="">– wähle –</option>${op.map(o=>`<option>${o}</option>`).join('')}</select>`);box.append(r);const se=$('select',r);return{el:r,ok:()=>se.value==s.a}})}
+
+/* ---------- Teil 2: Üben ---------- */
+function memory(box){const sp=sh(specs()).slice(0,6);let cs=[];sp.forEach((s,k)=>cs.push({k,t:s.q,y:'q'},{k,t:s.a,y:'a'}));cs=sh(cs);
+ const g=h('div','mem');box.append(g);let op=[],lock=0,m=0;
+ cs.forEach(c=>{const e=h('button','mc '+c.y,`<span class="qm">❓</span><span class="ft">${c.t}</span>`);e.dataset.k=c.k;g.append(e);
+  e.onclick=()=>{if(lock||e.classList.contains('up'))return;e.classList.add('up');op.push(e);if(op.length<2)return;lock=1;const[a,b]=op;op=[];
+   if(a.dataset.k==b.dataset.k){a.classList.add('done');b.classList.add('done');m++;award(b);lock=0}
+   else setTimeout(()=>{a.classList.remove('up');b.classList.remove('up');lock=0},1000)}});
+ box.chk=()=>m==6?'🏆 Alle 6 Paare gefunden! Mit 🔄 gibt es neue Paare.':`🧠 ${m} von 6 Paaren gefunden. Finde Modalverb und passende Ersatzform.`}
+function table(box){const cols=TS=='x'?['p','s']:[TS];const t=h('table','',`<tr><th>Modalverb</th><th>Person</th>${cols.map(c=>`<th>simple ${c=='p'?'present':'past'}</th>`).join('')}</tr>`);box.append(t);
+ sh([['allowed',0],['allowed',1],['able',0],['able',1],['have',0],['have',1]]).forEach(([c,n],r)=>{
+  const s=R(['I','you','he','she','we','they']),p=s=='I'?'1':(s=='he'||s=='she')?'3':'2';
+  const tr=h('tr','',`<td>${ICON[c]} ${MO(c,n)}<br><small>${SHORT[c]}</small></td><td>${s}</td>`);t.append(tr);
+  const hide=cols.length==1?[1]:(r<2?[1,1]:R([[1,0],[0,1]]));
+  cols.forEach((tn,j)=>{const f=F(c,n,tn,p),td=h('td');tr.append(td);
+   if(!hide[j])td.textContent=f;else{const i=h('input','in');i.autocomplete='off';i.autocapitalize='off';i.spellcheck=false;td.append(i);box.items.push({el:i,ok:()=>same(i.value,f)})}})})}
+function mc(box){for(let k=0;k<5;k++){const o=rnd();let sel=null;
+ const e=h('div','q',`<div class="hint">${o.hint}</div><div class="s">${o.pre}${o.subj} <b>____</b> ${o.ph}.</div><div class="os"></div>`);
+ opts(o).forEach(x=>{const b=h('button','opt',x);b.onclick=()=>{sel=x;$$('.opt',e).forEach(y=>y.classList.toggle('sel',y==b))};$('.os',e).append(b)});
+ box.append(e);box.items.push({el:e,ok:()=>sel==o.f})}}
+function tf(box){for(let k=0;k<6;k++){const o=rnd(),good=Math.random()<.5;let sel=null;
+ const e=h('div','q',`<div class="s">${o.pre}${o.subj} <b>${good?o.f:wrongF(o)}</b> ${o.ph}.</div><div class="os"><button class="opt">✅ Richtig</button><button class="opt">❌ Falsch</button></div><div class="tip"></div>`);
+ const bs=$$('.opt',e);bs.forEach((b,i)=>b.onclick=()=>{sel=i==0;bs.forEach(y=>y.classList.toggle('sel',y==b))});
+ box.append(e);box.items.push({el:e,ok:()=>sel===good,after:r=>{$('.tip',e).textContent=(!r&&sel!==null&&!good)?'Richtig wäre: '+o.f:''}})}}
+
+/* ---------- Teil 3: Anwenden ---------- */
+function gap(box){for(let k=0;k<6;k++){const o=rnd();
+ const e=h('div','q',`<div class="hint">${o.hint}</div><div class="s">${o.pre}${o.subj} <input class="in" autocomplete="off" autocapitalize="off" spellcheck="false"> ${o.ph}.</div><div class="tip"></div>`);
+ const i=$('input',e);box.append(e);box.items.push({el:e,ok:()=>same(i.value,o.f),after:r=>{$('.tip',e).textContent=(r||!i.value)?'':`Tipp: beginnt mit „${o.f.split(' ')[0].slice(0,2)}…“`}})}}
+function det(box){for(let k=0;k<4;k++){const os=[rnd(),rnd(),rnd()],w=Math.floor(Math.random()*3),wf=wrongF(os[w]);let sel=-1;
+ const e=h('div','q','<div class="hint">🕵️ Welcher Satz enthält einen Fehler? Tippe darauf.</div><div class="os"></div>');
+ const bs=os.map((o,i)=>{const b=h('button','opt l',o.sent);b.onclick=()=>{sel=i;bs.forEach((y,j)=>y.classList.toggle('sel',j==i))};$('.os',e).append(b);return b});
+ box.append(e);box.items.push({el:e,ok:()=>sel==w,after:r=>{if(r){const o=os[w];bs[w].innerHTML=`${o.pre}${o.subj} <s>${wf}</s> <b class="gr">${o.f}</b> ${o.ph}.`}}})}}
+function hang(box){const o=rnd(),w=R(o.f.split(' ').filter(x=>x!='to'&&x.length>2)),lw=w.toLowerCase();let g=[],lives=7,st=0;
+ const e=h('div','q');box.append(e);const it={el:e,ok:()=>st==1,paid:0};box.items=[it];
+ const draw=()=>{const m=[...lw].map(ch=>/[a-z]/.test(ch)?(g.includes(ch)||st==2?ch:'_'):ch).join(' ');
+  e.innerHTML=`<div class="hint">${o.hint} – Welches Wort fehlt?</div><div class="s">${o.pre}${o.subj} ${o.f.split(' ').map(x=>x==w?`<span class="mk">${m}</span>`:x).join(' ')} ${o.ph}.</div><div class="lv">${'❤️'.repeat(lives)}${'🖤'.repeat(7-lives)}</div><div class="kb"></div>`;
+  [...'abcdefghijklmnopqrstuvwxyz'].forEach(ch=>{const b=h('button','',ch);b.disabled=g.includes(ch)||st>0;b.onclick=()=>{g.push(ch);if(!lw.includes(ch))lives--;
+   if([...lw].every(x=>!/[a-z]/.test(x)||g.includes(x))){st=1;draw();it.paid=1;award(e);return}if(lives<=0)st=2;draw()};$('.kb',e).append(b)})};
+ draw();box.chk=()=>st==1?'🏆 Gelöst! Mit 🔄 kommt ein neues Wort.':st==2?`😢 Leider verloren – das Wort war „${w}“. Probiere ein neues mit 🔄.`:`Rate weiter – noch ${lives} Leben.`}
+function build(box){for(let k=0;k<3;k++){const o=rnd(),tk=o.sent.split(' ');let ch=[],pool=sh(tk.map((x,i)=>i));
+ const e=h('div','q',`<div class="hint">🧩 Baue den Satz · ${o.hint}</div><div class="ans"></div><div class="os"></div>`),an=$('.ans',e),po=$('.os',e);
+ const dr=()=>{an.innerHTML='';po.innerHTML='';ch.forEach(i=>{const b=h('button','tk on',tk[i]);b.onclick=()=>{ch=ch.filter(x=>x!=i);dr()};an.append(b)});
+  pool.filter(i=>!ch.includes(i)).forEach(i=>{const b=h('button','tk',tk[i]);b.onclick=()=>{ch.push(i);dr()};po.append(b)})};
+ dr();box.append(e);box.items.push({el:e,ok:()=>ch.map(i=>tk[i]).join(' ')==o.sent})}}
+
+/* ---------- Zertifikat ---------- */
+function cert(box){box.innerHTML=`<p>Dein Punktestand: <b>⭐ ${S.score}</b> richtige Aufgaben</p><label>Dein Name: <input class="in" id="nm" maxlength="30"></label> <button class="b g" id="mkc">🏅 Zertifikat erstellen</button> <button class="b" id="rs">↺ Punkte zurücksetzen</button><div id="cw"></div>`;
+ $('#nm').value=S.name||'';
+ $('#rs').onclick=()=>{if(confirm('Punktestand wirklich auf 0 setzen?')){S.score=0;save();cert(box)}};
+ $('#mkc').onclick=()=>{const n=$('#nm').value.trim()||'Modals-Profi';S.name=n;save();
+  const c=h('canvas'),x=c.getContext('2d');c.width=1100;c.height=780;
+  x.fillStyle='#f4fbf6';x.fillRect(0,0,1100,780);x.strokeStyle='#3f8f2f';x.lineWidth=14;x.strokeRect(25,25,1050,730);x.strokeStyle='#ff8f1f';x.lineWidth=4;x.strokeRect(48,48,1004,684);
+  x.textAlign='center';const T=(t,y,s,col,f='"Trebuchet MS","Segoe UI",Arial,sans-serif')=>{x.fillStyle=col;x.font=`bold ${s}px ${f}`;x.fillText(t,550,y)};
+  const sc=S.score,lv=sc>=100?'Modals-Meister 💎':sc>=60?'Gold 🥇':sc>=30?'Silber 🥈':sc>=10?'Bronze 🥉':'Starter 🌱';
+  T('🎓 ZERTIFIKAT 🎓',140,62,'#245c1b','Georgia,serif');T('Modals and their substitute forms',200,34,'#3f8f2f');
+  T('Diese Urkunde erhält',290,28,'#555');T(n,385,n.length>18?48:68,'#e07000','Georgia,serif');
+  x.fillStyle='#ff8f1f';x.fillRect(300,415,500,4);
+  T(`für ${sc} richtig gelöste Aufgaben`,480,34,'#222');T('Level: '+lv,555,44,'#2a7de1');
+  T('⭐ '.repeat(Math.min(8,Math.max(1,Math.ceil(sc/10)))).trim(),630,40,'#e0a000');
+  T('Datum: '+new Date().toLocaleDateString('de-DE'),710,24,'#555');
+  const w=$('#cw');w.innerHTML='';w.append(c);const a=h('a','b g','⬇️ Als Bild speichern');a.href=c.toDataURL('image/png');a.download='modals-zertifikat.png';a.style.textDecoration='none';a.style.display='inline-block';w.append(a)}}
+
+/* ---------- Navigation & Prüfen ---------- */
+const PARTS=[['🔍','1 · Kennenlernen'],['🏋️','2 · Üben'],['🚀','3 · Anwenden'],['🏅','Zertifikat']];
+const TASKS=[[
+{ic:'🃏',t:'Karteikarten',d:'Tippe auf die Karte, um sie umzudrehen. Wie lautet die Ersatzform?',nc:1,run:cards},
+{ic:'📜',t:'Spickzettel',d:'Alle Regeln aus dem Buch auf einen Blick. Die grünen Teile sind die Ersatzformen.',nc:1,run:sheet},
+{ic:'🔗',t:'Zuordnen',d:'Wähle zu jedem Modalverb die passende Ersatzform.',run:match}],
+[{ic:'🧠',t:'Memory',d:'Decke zwei Karten auf: Modalverb und passende Ersatzform gehören zusammen.',run:memory},
+{ic:'📝',t:'Tabelle',d:'Fülle die leeren Felder aus.',run:table},
+{ic:'🎯',t:'Multiple Choice',d:'Wähle die richtige Form.',run:mc},
+{ic:'⚖️',t:'Richtig oder falsch?',d:'Ist die markierte Form richtig?',run:tf}],
+[{ic:'✏️',t:'Lückensätze',d:'Schreibe die richtige Ersatzform in die Lücke (z. B. wasn’t able to).',run:gap},
+{ic:'🕵️',t:'Fehlerdetektiv',d:'Finde in jeder Runde den Satz mit dem Fehler.',run:det},
+{ic:'🪢',t:'Hangman',d:'Rate das fehlende Wort, bevor alle Herzen weg sind.',run:hang},
+{ic:'🧩',t:'Satzbau',d:'Tippe die Wörter in der richtigen Reihenfolge an.',run:build}]];
+let pi=0,ti=0;
+function nav(){const tb=$('#tabs');tb.innerHTML='';PARTS.forEach((p,i)=>{const b=h('button',i==pi?'on':'',p[0]+' '+p[1]);b.onclick=()=>{pi=i;ti=0;load()};tb.append(b)});
+ const sb=$('#sub');sb.innerHTML='';(TASKS[pi]||[]).forEach((t,i)=>{const b=h('button',i==ti?'on':'',t.ic+' '+t.t);b.onclick=()=>{ti=i;load()};sb.append(b)});
+ const ts=$('#ts');ts.innerHTML='';if(pi<3)[['x','🔀 Gemischt'],['p','🟢 simple present'],['s','🟠 simple past']].forEach(([k,l])=>{const b=h('button',k==TS?'on':'',l);b.onclick=()=>{TS=k;load()};ts.append(b)})}
+function load(){nav();const box=$('#box');box.innerHTML='';box.items=[];box.chk=null;$('#msg').textContent='';
+ if(pi==3){$('#tt').textContent='🏅 Dein Zertifikat';$('#td').textContent='Trage deinen Namen ein und erstelle dein Zertifikat.';$('#bar').hidden=true;cert(box);return}
+ const T=TASKS[pi][ti];$('#tt').textContent=T.ic+' '+T.t;$('#td').textContent=T.d;$('#bar').hidden=!!T.nc;T.run(box)}
+$('#bn').onclick=load;
+$('#bc').onclick=()=>{const box=$('#box');if(box.chk){$('#msg').textContent=box.chk();return}
+ let g=0;box.items.forEach(it=>{const r=it.ok();it.el.classList.toggle('ok',r);it.el.classList.toggle('bad',!r);if(r){g++;if(!it.paid){it.paid=1;award(it.el)}}if(it.after)it.after(r)});
+ $('#msg').textContent=g==box.items.length?'🏆 Alles richtig! Mit 🔄 bekommst du komplett neue Aufgaben.':`${g} von ${box.items.length} richtig – verbessere die roten Aufgaben und prüfe noch einmal.`};
+save();load();
+</script></body></html>
